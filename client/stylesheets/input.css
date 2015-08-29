@@ -1,0 +1,38 @@
+.input {
+	flex: 0 0 auto;
+	border-top: 1px solid #eee;
+	background-color: #fafafa;
+	display: flex;
+	font-size: 18px;
+}
+
+.input .name {
+	flex: 0 0 auto;
+}
+
+.input .name a {
+	margin-top: 25px;
+	margin-left: 25px;
+	text-decoration: none;
+	font-size: inherit;
+	color: inherit;
+	padding: 0;
+	display: inline-block;
+}
+
+.input .name a:hover {
+	text-decoration: underline;
+}
+
+.input textarea {
+	flex: 1 1 100%;
+	padding: 25px;
+	border: none;
+	outline: none;
+	resize: none;
+	background: none;
+	font-family: inherit;
+	box-sizing: border-box;
+	font-size: inherit;
+	overflow: hidden;
+}

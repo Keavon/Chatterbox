@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Chatterbox</title>
+	<link href="stylesheets/header.css" rel="stylesheet">
+	<link href="stylesheets/room.css" rel="stylesheet">
+	<link href="stylesheets/input.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,100,100italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class="title-bar">
+		<div class="tabs">
+			<a>
+				<span>
+					<img src="http://i.imgur.com/ORe6fC1.png" />#css</span>
+				<svg viewBox="0 0 1000 1000">
+					<circle cx="500" cy="500" r="500" />
+					<line x1="250" y1="750" x2="750" y2="250" />
+					<line x1="250" y1="250" x2="750" y2="750" />
+				</svg>
+			</a>
+			<a>
+				<span>
+					<img src="http://i.imgur.com/dp4NsvM.png" />##javascript</span>
+				<svg viewBox="0 0 1000 1000">
+					<circle cx="500" cy="500" r="500" />
+					<line x1="250" y1="750" x2="750" y2="250" />
+					<line x1="250" y1="250" x2="750" y2="750" />
+				</svg>
+			</a>
+			<a>
+				<span>
+					<img src="http://i.imgur.com/V2CKhc3.png" />#html</span>
+				<svg viewBox="0 0 1000 1000">
+					<circle cx="500" cy="500" r="500" />
+					<line x1="250" y1="750" x2="750" y2="250" />
+					<line x1="250" y1="250" x2="750" y2="750" />
+				</svg>
+			</a>
+			<a class="active">
+				<span>
+					<img src="http://i.imgur.com/0XMMtNp.png" />#blender</span>
+				<svg viewBox="0 0 1000 1000">
+					<circle cx="500" cy="500" r="500" />
+					<line x1="250" y1="750" x2="750" y2="250" />
+					<line x1="250" y1="250" x2="750" y2="750" />
+				</svg>
+			</a>
+			<a class="add">
+				<svg viewBox="0 0 1000 1000">
+					<path d="M791.7,541.7h-250v250h-83.3v-250h-250v-83.3h250v-250h83.3v250h250V541.7z" />
+				</svg>
+			</a>
+		</div>
+		<div class="window-buttons">
+			<a href="#" title="Minimize" class="button">
+				<svg viewBox="0 0 1000 1000">
+					<rect y="500" width="1000" height="100" />
+				</svg>
+			</a>
+			<a href="#" title="Maximize" class="button">
+				<svg viewBox="0 0 1000 1000">
+					<path d="M0,0v1000h1000V0H0z M900,900H100V100h800V900z" />
+				</svg>
+			</a>
+			<a href="#" title="Restore Down" class="button" style="display:none;">
+				<svg viewBox="0 0 1000 1000">
+					<path d="M1001,0H201v200H0v800h800V800h201V0z M700,900H100V300h600V900z M901,700H800V200H301V100h600V700z" />
+				</svg>
+			</a>
+			<a href="#" title="Close" class="button">
+				<svg viewBox="0 0 1000 1000">
+					<polygon points="929.3,0 500,429.3 70.7,0 0,70.7 429.3,500 0,929.3 70.7,1000 500,570.7 929.3,1000 1000,929.3 570.7,500 1000,70.7" />
+				</svg>
+			</a>
+		</div>
+	</div>
+	<div class="room">
+		<div class="channel">
+			<div class="info">
+				<img src="http://i.imgur.com/0XMMtNp.png" />
+				<div class="title">
+					<h1>#blender</h1>
+					<h6>irc.freenode.net</h6>
+				</div>
+				<a href="#" class="users">
+					<span>350</span>
+					<svg viewBox="0 0 1000 1000">
+						<ellipse cx="500" cy="750" rx="333.333" ry="166.666" />
+						<circle cx="500" cy="333.333" r="166.666" />
+						<path d="M500,0C223.9,0,0,223.9,0,500s223.9,500,500,500s500-223.9,500-500S776.1,0,500,0z M500,900 c-220.9,0-400-179.1-400-400s179.1-400,400-400s400,179.1,400,400S720.9,900,500,900z" />
+					</svg>
+				</a>
+			</div>
+			<p>Blender Support Channel | www.blender.org | Current release 2.75a | Please avoid swearing | Share files with www.pasteall.org | More Q&amp;A at blender.stackexchange.com | Check out the Blender Cloud and help support future projects: https://cloud.blender.org</p>
+		</div>
+		<div class="messages">
+			<p class="sender me">
+				<a href="#">Mal</a><span>10:03 AM</span>
+			</p>
+			<p class="message">We've done the impossible, and that makes us mighty.</p>
+
+			<p class="time-elapsed">After 1 day 22 hours of inactivity...</p>
+
+			<p class="sender">
+				<a href="#">Wash</a><span>8:45 AM – 8:47 AM</span>
+			</p>
+			<p class="message">Yes. Yes, this is a fertile land, and we will thrive. We will rule over all this land, and we will call it... "this land."</p>
+			<p class="message">I think we should call it "your grave!"</p>
+			<p class="message">Ah, curse your sudden but inevitable betrayal!</p>
+			<p class="message"><img src="http://i.imgur.com/lUsz1QD.gif" alt="http://i.imgur.com/lUsz1QD.gif" /></p>
+			<p class="message">Har har har! Mine is an evil laugh! Now die!</p>
+			<p class="message">Oh, no, God! Oh, dear God in heaven!</p>
+
+			<p class="time-elapsed">After 4 days 2 hours offline...</p>
+
+			<p class="sender me">
+				<a href="#">Mal</a><span>10:38 AM</span>
+			</p>
+			<p class="message">Jayne, your mouth is talking. You might wanna look to that.</p>
+
+			<p class="sender">
+				<a href="#">Jayne</a><span>11:16 AM</span>
+			</p>
+			<p class="message">Ten percent of nothin' is... let me do the math here... nothin' into nothin'... carry the nothin'...</p>
+		</div>
+	</div>
+	<div class="input">
+		<div class="name">
+			<a href="#">Mal</a>
+		</div>
+		<textarea placeholder="Message" rows="1" oninput="var i = 1; do { this.setAttribute('rows', i); i++; } while (this.scrollHeight > this.clientHeight);"></textarea>
+	</div>
+</body>
+
+</html>

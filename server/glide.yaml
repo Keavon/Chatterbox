@@ -1,0 +1,10 @@
+package: github.com/chatterbox-irc/chatterbot/server
+
+
+import:
+  - package: github.com/gorilla/mux
+    vcs: git
+    ref: ee1815431e497d3850809578c93ab6705f1a19f7
+  - package: github.com/gorilla/context
+    vcs: git
+    ref: 1c83b3eabd45b6d76072b66b746c20815fb2872d

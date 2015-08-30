@@ -86,7 +86,7 @@
 					<h1>#blender</h1>
 					<h6>irc.freenode.net</h6>
 				</div>
-				<a href="#" class="users">
+				<a href="#" class="users" onclick="var element = document.getElementsByClassName('user-list')[0]; if (element.className === 'user-list visible') element.className = 'user-list'; else element.className = 'user-list visible';">
 					<span>350</span>
 					<svg viewBox="0 0 1000 1000">
 						<ellipse cx="500" cy="750" rx="333.333" ry="166.666" />
@@ -95,37 +95,52 @@
 					</svg>
 				</a>
 			</div>
-			<p>Blender Support Channel | www.blender.org | Current release 2.75a | Please avoid swearing | Share files with www.pasteall.org | More Q&amp;A at blender.stackexchange.com | Check out the Blender Cloud and help support future projects: https://cloud.blender.org</p>
+			<p>Blender Support Channel | <a href="http://www.blender.org">www.blender.org</a> | Current release 2.75a | Please avoid swearing | Share files with <a href="http://www.pasteall.org">www.pasteall.org</a> | More Q&amp;A at <a href="http://blender.stackexchange.com">blender.stackexchange.com</a> | Check out the Blender Cloud and help support future projects: <a href="https://cloud.blender.org">https://cloud.blender.org</a></p>
 		</div>
-		<div class="messages">
-			<p class="sender me">
-				<a href="#">Mal</a><span>10:03 AM</span>
-			</p>
-			<p class="message">We've done the impossible, and that makes us mighty.</p>
+		<div class="content">
+			<div class="messages">
+				<p class="sender me">
+					<a href="#">Mal</a><span>10:03 AM</span>
+				</p>
+				<p class="message me">We've done the impossible, and that makes us mighty.</p>
 
-			<p class="time-elapsed">After 1 day 22 hours of inactivity...</p>
+				<p class="time-elapsed">After 1 day 22 hours of inactivity...</p>
 
-			<p class="sender">
-				<a href="#">Wash</a><span>8:45 AM – 8:47 AM</span>
-			</p>
-			<p class="message">Yes. Yes, this is a fertile land, and we will thrive. We will rule over all this land, and we will call it... "this land."</p>
-			<p class="message">I think we should call it "your grave!"</p>
-			<p class="message">Ah, curse your sudden but inevitable betrayal!</p>
-			<p class="message"><img src="http://i.imgur.com/lUsz1QD.gif" alt="http://i.imgur.com/lUsz1QD.gif" /></p>
-			<p class="message">Har har har! Mine is an evil laugh! Now die!</p>
-			<p class="message">Oh, no, God! Oh, dear God in heaven!</p>
+				<p class="sender">
+					<a href="#">Wash</a><span>8:45 AM – 8:47 AM</span>
+				</p>
+				<p class="message">Yes. Yes, this is a fertile land, and we will thrive. We will rule over all this land, and we will call it... "this land."</p>
+				<p class="message">I think we should call it "your grave!"</p>
+				<p class="message">Ah, curse your sudden but inevitable betrayal!</p>
+				<p class="message"><img src="http://i.imgur.com/lUsz1QD.gif" alt="http://i.imgur.com/lUsz1QD.gif" /></p>
+				<p class="message">Har har har! Mine is an evil laugh! Now die!</p>
+				<p class="message">Oh, no, God! Oh, dear God in heaven!</p>
 
-			<p class="time-elapsed">After 4 days 2 hours offline...</p>
+				<p class="time-elapsed">After 4 days 2 hours offline...</p>
 
-			<p class="sender me">
-				<a href="#">Mal</a><span>10:38 AM</span>
-			</p>
-			<p class="message">Jayne, your mouth is talking. You might wanna look to that.</p>
+				<p class="sender me">
+					<a href="#">Mal</a><span>10:38 AM</span>
+				</p>
+				<p class="message me">Jayne, your mouth is talking. You might wanna look to that.</p>
 
-			<p class="sender">
-				<a href="#">Jayne</a><span>11:16 AM</span>
-			</p>
-			<p class="message">Ten percent of nothin' is... let me do the math here... nothin' into nothin'... carry the nothin'...</p>
+				<p class="sender">
+					<a href="#">Jayne</a><span>11:16 AM</span>
+				</p>
+				<p class="message">Ten percent of nothin' is... let me do the math here... nothin' into nothin'... carry the nothin'...</p>
+			</div>
+			<div class="user-list visible">
+				<ul>
+					<li><a href="#">Mal</a></li>
+					<li><a href="#">Wash</a></li>
+					<li><a href="#">Zoey</a></li>
+					<li><a href="#">Jayne</a></li>
+					<li><a href="#">Inara</a></li>
+					<li><a href="#">Book</a></li>
+					<li><a href="#">Kayle</a></li>
+					<li><a href="#">Simon</a></li>
+					<li><a href="#">River</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="input">

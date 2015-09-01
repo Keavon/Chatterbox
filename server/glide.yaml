@@ -8,3 +8,6 @@ import:
   - package: github.com/gorilla/context
     vcs: git
     ref: 1c83b3eabd45b6d76072b66b746c20815fb2872d
+  - package: github.com/jinzhu/gorm
+    vcs: git
+    ref: b3d0898bf3e36954714d8c9983ac661b5a307664

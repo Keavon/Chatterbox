@@ -2,3 +2,15 @@ web:
   build: .
   ports:
     - "8080:8080"
+  links:
+    - mailcatcher
+  environment:
+    - "MAILER_HOST=mailcatcher"
+    - "MAILER_SMTP_PORT=1025"
+    - "MAILER_USERNAME=''"
+    - "MAILER_PASSWORD=''"
+    - "MAILER_FROM=chatterbox@localhost.local"
+mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+      - "1080:1080"

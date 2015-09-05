@@ -13,3 +13,7 @@ import:
     ref: b269bd035a727d6c1081f76e7a239a1b00674c40
   - package: github.com/qor/inflection
     ref: 45321e63b98c756df17369c027c1df89298e1288
+  - package: github.com/wayn3h0/go-uuid
+    ref: 59759fb9b5de2a14be0091671df9437cf668288e
+  - package: github.com/wayn3h0/go-errors
+    ref: 25735e3c9d624c377f7b49fa76b3c1a60f2646b9

@@ -25,7 +25,8 @@ compile-interactive:
 deps:
 	docker run --rm \
 	-v $(CBX_ROOT):$(CONTIANER_CBX_ROOT) \
-	-w "$(CONTIANER_CBX_ROOT)/server" $(GO_ENV_CONTIANER) \
+	-w "$(CONTIANER_CBX_ROOT)/server" -e "DEBIAN_FRONTEND=noninteractive" -e "GO15VENDOREXPERIMENT=1" \
+	$(GO_ENV_CONTIANER) \
 	glide install
 
 serve: build start

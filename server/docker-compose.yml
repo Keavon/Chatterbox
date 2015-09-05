@@ -1,15 +1,23 @@
 web:
   build: .
+  command: ["/cbx", "-db=user=cbx password=cbx dbname=cbx host=db port=5432 sslmode=disable"]
   ports:
     - "8080:8080"
   links:
     - mailcatcher
+    - db
   environment:
     - "MAILER_HOST=mailcatcher"
     - "MAILER_SMTP_PORT=1025"
     - "MAILER_USERNAME=''"
     - "MAILER_PASSWORD=''"
     - "MAILER_FROM=chatterbox@localhost.local"
+db:
+  image: postgres:9.4.4
+  environment:
+    - "POSTGRES_USER=cbx"
+    - "POSTGRES_PASSWORD=cbx"
+    - "POSTGRES_DB=cbx"
 mailcatcher:
     image: schickling/mailcatcher:latest
     ports:

@@ -8,53 +8,13 @@
 	<link href="stylesheets/room.css" rel="stylesheet">
 	<link href="stylesheets/input.css" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,100,100italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<script src="javascript/room.js"></script>
+	<script src="javascript/tabs.js"></script>
 </head>
 
 <body>
 	<div class="title-bar">
-		<div class="tabs">
-			<a>
-				<span>
-					<img src="http://i.imgur.com/ORe6fC1.png" />#css</span>
-				<svg viewBox="0 0 1000 1000">
-					<circle cx="500" cy="500" r="500" />
-					<line x1="250" y1="750" x2="750" y2="250" />
-					<line x1="250" y1="250" x2="750" y2="750" />
-				</svg>
-			</a>
-			<a>
-				<span>
-					<img src="http://i.imgur.com/dp4NsvM.png" />##javascript</span>
-				<svg viewBox="0 0 1000 1000">
-					<circle cx="500" cy="500" r="500" />
-					<line x1="250" y1="750" x2="750" y2="250" />
-					<line x1="250" y1="250" x2="750" y2="750" />
-				</svg>
-			</a>
-			<a>
-				<span>
-					<img src="http://i.imgur.com/V2CKhc3.png" />#html</span>
-				<svg viewBox="0 0 1000 1000">
-					<circle cx="500" cy="500" r="500" />
-					<line x1="250" y1="750" x2="750" y2="250" />
-					<line x1="250" y1="250" x2="750" y2="750" />
-				</svg>
-			</a>
-			<a class="active">
-				<span>
-					<img src="http://i.imgur.com/0XMMtNp.png" />#blender</span>
-				<svg viewBox="0 0 1000 1000">
-					<circle cx="500" cy="500" r="500" />
-					<line x1="250" y1="750" x2="750" y2="250" />
-					<line x1="250" y1="250" x2="750" y2="750" />
-				</svg>
-			</a>
-			<a class="add">
-				<svg viewBox="0 0 1000 1000">
-					<path d="M791.7,541.7h-250v250h-83.3v-250h-250v-83.3h250v-250h83.3v250h250V541.7z" />
-				</svg>
-			</a>
-		</div>
+		<div class="tabs"></div>
 		<div class="window-buttons">
 			<a href="#" title="Minimize" class="button">
 				<svg viewBox="0 0 1000 1000">
@@ -81,10 +41,10 @@
 	<div class="room">
 		<div class="channel">
 			<div class="info">
-				<img src="http://i.imgur.com/0XMMtNp.png" />
+				<img />
 				<div class="title">
-					<h1>#blender</h1>
-					<h6>irc.freenode.net</h6>
+					<h1></h1>
+					<h6></h6>
 				</div>
 				<a href="#" class="users" onclick="var element = document.getElementsByClassName('user-list')[0]; if (element.className === 'user-list visible') element.className = 'user-list'; else element.className = 'user-list visible';">
 					<span>350</span>
@@ -95,7 +55,7 @@
 					</svg>
 				</a>
 			</div>
-			<p>Blender Support Channel | <a href="http://www.blender.org">www.blender.org</a> | Current release 2.75a | Please avoid swearing | Share files with <a href="http://www.pasteall.org">www.pasteall.org</a> | More Q&amp;A at <a href="http://blender.stackexchange.com">blender.stackexchange.com</a> | Check out the Blender Cloud and help support future projects: <a href="https://cloud.blender.org">https://cloud.blender.org</a></p>
+			<p></p>
 		</div>
 		<div class="content">
 			<div class="messages">
@@ -130,23 +90,13 @@
 			</div>
 			<div class="user-list visible">
 				<input placeholder="Search">
-				<ul>
-					<li><a href="#">Mal</a></li>
-					<li><a href="#">Wash</a></li>
-					<li><a href="#">Zoey</a></li>
-					<li><a href="#">Jayne</a></li>
-					<li><a href="#">Inara</a></li>
-					<li><a href="#">Book</a></li>
-					<li><a href="#">Kayle</a></li>
-					<li><a href="#">Simon</a></li>
-					<li><a href="#">River</a></li>
-				</ul>
+				<ul></ul>
 			</div>
 		</div>
 	</div>
 	<div class="input">
 		<div class="name">
-			<a href="#">Mal</a>
+			<a href="#"></a>
 		</div>
 		<textarea placeholder="Message" rows="1" oninput="var i = 1; do { this.setAttribute('rows', i); i++; } while (this.scrollHeight > this.clientHeight);"></textarea>
 	</div>

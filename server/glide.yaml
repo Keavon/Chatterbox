@@ -1,13 +1,19 @@
 package: github.com/chatterbox-irc/chatterbot/server
 
-
 import:
   - package: github.com/gorilla/mux
-    vcs: git
     ref: ee1815431e497d3850809578c93ab6705f1a19f7
   - package: github.com/gorilla/context
-    vcs: git
     ref: 1c83b3eabd45b6d76072b66b746c20815fb2872d
   - package: github.com/jinzhu/gorm
-    vcs: git
     ref: b3d0898bf3e36954714d8c9983ac661b5a307664
+  - package: golang.org/x/crypto
+    ref: aedad9a179ec1ea11b7064c57cbc6dc30d7724ec
+  - package: github.com/lib/pq
+    ref: b269bd035a727d6c1081f76e7a239a1b00674c40
+  - package: github.com/qor/inflection
+    ref: 45321e63b98c756df17369c027c1df89298e1288
+  - package: github.com/wayn3h0/go-uuid
+    ref: 59759fb9b5de2a14be0091671df9437cf668288e
+  - package: github.com/wayn3h0/go-errors
+    ref: 25735e3c9d624c377f7b49fa76b3c1a60f2646b9

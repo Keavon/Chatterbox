@@ -43,15 +43,19 @@ func New(mode int, loglevel int) {
 	if mode == Mconsole {
 		if loglevel <= Ldebug {
 			Debug = log.New(os.Stdout, "Debug: ", format)
+			Debug.Print("Debug logging started...")
 		}
 		if loglevel <= Linfo {
 			Info = log.New(os.Stdout, "Info: ", format)
+			Info.Print("Info logging started...")
 		}
 		if loglevel <= Lwarn {
 			Warn = log.New(os.Stderr, "Warn: ", format)
+			Warn.Print("Warning logging started...")
 		}
 		if loglevel <= Lerror {
-			Warn = log.New(os.Stderr, "Error: ", format)
+			Error = log.New(os.Stderr, "Error: ", format)
+			Error.Print("Error logging started...")
 		}
 	}
 }

@@ -1,3 +1,3 @@
 FROM scratch
 ADD cbx /
-CMD ["/cbx"]
+CMD /cbx

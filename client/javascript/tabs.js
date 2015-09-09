@@ -1,3 +1,4 @@
+// Stores information relating to tabs
 var tabs = {
 	list: [],
 	active: 0
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 	
+	// Initially open a tab for each channel in each network
 	for (var network in networks) {
 		for (var channel in networks[network].channels) {
 			addTab(networks[network], networks[network].channels[channel]);
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	changeTab(tabs.active);
 });
 
+// Switches to a tab given its index
 var changeTab = function(tabIndex) {
 	// Store the active tab
 	tabs.active = tabIndex;
@@ -77,14 +80,32 @@ var changeTab = function(tabIndex) {
 	document.querySelector(".user-list ul").innerHTML = users;
 };
 
+// Closes a tab given its index
 var closeTab = function(tabIndex) {
+	// Prevent the user from closing the last tab
+	if (tabs.list.length <= 1) {
+		return;
+	}
+	
 	// Remove tab from the list of tabs
 	tabs.list.splice(tabIndex, 1);
 	
 	// Remove tab from the DOM
 	document.querySelector(".tabs").removeChild(document.querySelectorAll(".tabs a")[tabIndex]);
+	
+	// Move to a new tab if the user closes the active tab
+	if (tabIndex === tabs.active) {
+		if (tabs.active < tabs.list.length) {
+			// Move to the one in the new position of the former closed tab
+			changeTab(tabs.active);
+		} else {
+			// Move to the new last tab if the former last tab is closed
+			changeTab(tabs.list.length - 1);
+		}
+	}
 };
 
+// Adds a tab for a channel given the network address and channel name
 var addTab = function(network, channel) {
 	// Create a new tab element
 	var tabElement = document.createElement("a");
@@ -95,16 +116,19 @@ var addTab = function(network, channel) {
 	// Append tab to the tab bar right before the new tab button
 	document.querySelector(".tabs").insertBefore(tabElement, document.querySelector(".tabs .add"));
 	
+	// Add a new object to the tab list containing the network address and channel name
 	tabs.list.push({
 		address: network.address,
 		channel: channel.name
 	});
 };
 
+// Prompts the user for information on creating a new tab
 var newTab = function() {
 	alert("Adding tab");
 };
 
+// Returns the network given a tab's index
 var getNetworkFromTabIndex = function(tabIndex) {
 	// Find the index of the tab's network address in the list of networks
 	var networkIndex = networks.map(function(n) {
@@ -115,6 +139,7 @@ var getNetworkFromTabIndex = function(tabIndex) {
 	return networks[networkIndex];
 };
 
+// Returns a channel given a tab's index
 var getChannelFromTabIndex = function(tabIndex) {
 	// Get the network
 	var network = getNetworkFromTabIndex(tabIndex);

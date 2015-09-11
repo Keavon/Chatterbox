@@ -34,7 +34,6 @@ var (
 func main() {
 	flag.Parse()
 	listen := fmt.Sprintf("%s:%d", *host, *port)
-	fmt.Println(logLevel)
 
 	lo, ll, err := logger.StringToFlag(*logOutput, *logLevel)
 	if err != nil {

@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/chatterbox-irc/chatterbox/server/models"
@@ -9,26 +8,38 @@ import (
 	"github.com/chatterbox-irc/chatterbox/server/util"
 )
 
+type registerReq struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 func register(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var err error
 	logger.Debug.Printf("%s %s\n", r.Method, r.URL.Path)
 
-	user := models.User{}
+	req := registerReq{}
 
-	if err := util.ParseJSON(r.Body, w, &user); err != nil {
+	if err := util.ParseJSON(r.Body, w, &req); err != nil {
+		// ParseJSON handles error reponse
 		return
 	}
 
-	if user.ID, err = util.GenerateUUID(w); err != nil {
-		return
-	}
+	_, msg, err := models.NewUser(req.Email, req.Password)
 
 	if err != nil {
+		w.WriteHeader(500)
 		return
 	}
 
-	logger.Debug.Println(user.Validate())
+	if len(msg) > 0 {
+		msgJSON, err := models.ValidationToJSON(msg)
+		if err != nil {
+			w.WriteHeader(500)
+			return
+		}
+		w.WriteHeader(400)
+		w.Write(msgJSON)
+	}
 
-	fmt.Fprint(w, r.URL.Path[1:])
+	w.WriteHeader(201)
 }

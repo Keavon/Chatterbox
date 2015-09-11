@@ -6,9 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/wayn3h0/go-uuid"
-	"github.com/wayn3h0/go-uuid/random"
-
 	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
 )
 
@@ -41,18 +38,4 @@ func ParseJSON(b io.Reader, w http.ResponseWriter, m interface{}) error {
 	}
 
 	return nil
-}
-
-// GenerateUUID generates a uuid
-func GenerateUUID(w http.ResponseWriter) (string, error) {
-	nUUID, err := random.New()
-
-	if err != nil {
-		logger.Error.Print(err)
-		w.WriteHeader(500)
-		w.Write([]byte(`{"errors": ["unable to generate random number"]}`))
-		return "", err
-	}
-
-	return nUUID.Format(uuid.StyleWithoutDash), nil
 }

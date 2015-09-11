@@ -23,7 +23,6 @@ func SendMail(to, subj, msg string) error {
 	auth := smtp.PlainAuth("", os.Getenv("MAILER_USERNAME"), os.Getenv("MAILER_PASSWORD"),
 		os.Getenv("MAILER_HOST"))
 	host := os.Getenv("MAILER_HOST") + ":" + os.Getenv("MAILER_SMTP_PORT")
-	fmt.Println(host)
 	err := smtp.SendMail(host, auth, os.Getenv("MAILER_FROM"), []string{to}, []byte(msg))
 	return err
 }

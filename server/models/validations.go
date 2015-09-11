@@ -1,27 +1,56 @@
 package models
 
 import (
-	"fmt"
+	"encoding/json"
 	"regexp"
+
+	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
+)
+
+// ValidationMsg is a the message format of validations.
+type ValidationMsg struct {
+	Field string `json:"field"`
+	Msg   string `json:"msg"`
+}
+
+const (
+	uniqueMsg   = "must be unique"
+	nilMsg      = "can't be nil"
+	notEmailMsg = "not a valid email"
 )
 
 var (
-	uniqueErrTemplate = "%s must be unique"
-	emailRegex        = regexp.MustCompile(`^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$`)
+	emailRegex = regexp.MustCompile(`^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,}$`)
 )
 
-func isEmail(email string) []string {
+func isEmail(field, email string) []ValidationMsg {
 	if emailRegex.MatchString(email) {
-		return []string{}
+		return []ValidationMsg{}
 	}
 
-	return []string{fmt.Sprintf("%s is not a valid email", email)}
+	return []ValidationMsg{ValidationMsg{Field: field, Msg: notEmailMsg}}
 }
 
-func notNil(field, contents string) []string {
+func notNil(field, contents string) []ValidationMsg {
 	if contents == "" {
-		return []string{fmt.Sprintf("%s field can't be nil", field)}
+		return []ValidationMsg{ValidationMsg{Field: field, Msg: nilMsg}}
 	}
 
-	return []string{}
+	return []ValidationMsg{}
+}
+
+// ValidationToJSON converts a ValidationMsg array to a json error message.
+func ValidationToJSON(msgs []ValidationMsg) ([]byte, error) {
+	errMsg := map[string]interface{}{
+		"error": msgs,
+	}
+
+	out, err := json.Marshal(errMsg)
+
+	if err != nil {
+		logger.Error.Print(err)
+		return nil, err
+	}
+
+	return out, nil
 }

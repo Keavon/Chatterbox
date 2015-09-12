@@ -60,6 +60,7 @@ func main() {
 	}
 
 	r := mux.NewRouter()
+	r.StrictSlash(true)
 	auth.New(r)
 
 	http.Handle("/", r)

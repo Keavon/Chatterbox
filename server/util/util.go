@@ -39,3 +39,17 @@ func ParseJSON(b io.Reader, w http.ResponseWriter, m interface{}) error {
 
 	return nil
 }
+
+// JSONResponse writes a json response from a struct
+func JSONResponse(w http.ResponseWriter, b interface{}, responseCode int) {
+	res, err := json.Marshal(b)
+
+	if err != nil {
+		w.WriteHeader(500)
+		return
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	w.WriteHeader(responseCode)
+	w.Write(res)
+}

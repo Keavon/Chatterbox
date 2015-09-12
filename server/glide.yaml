@@ -17,3 +17,5 @@ import:
     ref: 59759fb9b5de2a14be0091671df9437cf668288e
   - package: github.com/wayn3h0/go-errors
     ref: 25735e3c9d624c377f7b49fa76b3c1a60f2646b9
+  - package: github.com/dgrijalva/jwt-go
+    ref: v2.3.0

@@ -12,6 +12,7 @@ web:
     - "MAILER_USERNAME=''"
     - "MAILER_PASSWORD=''"
     - "MAILER_FROM=chatterbox@localhost.local"
+    - "USER_TOKEN_SECRET=abcd1234"
 db:
   image: postgres:9.4.4
   environment:

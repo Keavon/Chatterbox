@@ -13,18 +13,33 @@ type User struct {
 	Password string `sql:"not null" json:"password"`
 }
 
+// CheckPass checks if the password matches the users hash.
+func (u User) CheckPass(password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
+
+	if err == nil {
+		return true
+	}
+
+	if err != bcrypt.ErrMismatchedHashAndPassword {
+		logger.Error.Print(err)
+	}
+
+	return false
+}
+
 // NewUser creates a new user object if it is valid.
-func NewUser(email, password string) (User, []ValidationMsg, error) {
+func NewUser(email, password string) (*User, []ValidationMsg, error) {
 	id, err := generateUUID()
 	if err != nil {
 		logger.Error.Print(err)
-		return User{}, []ValidationMsg{}, err
+		return &User{}, []ValidationMsg{}, err
 	}
 
 	msg := ValidateUser(id, email, password)
 
 	if len(msg) > 0 {
-		return User{}, msg, nil
+		return &User{}, msg, nil
 	}
 
 	// Use bcrypt to hash password. Using cost 10 (reccomended by library).
@@ -32,17 +47,17 @@ func NewUser(email, password string) (User, []ValidationMsg, error) {
 
 	if err != nil {
 		logger.Error.Print(err)
-		return User{}, []ValidationMsg{}, err
+		return &User{}, []ValidationMsg{}, err
 	}
 
 	user := User{ID: id, Email: email, Password: string(ePass)}
 
 	if err = DB.Create(&user).Error; err != nil {
 		logger.Error.Print(err)
-		return User{}, []ValidationMsg{}, err
+		return &User{}, []ValidationMsg{}, err
 	}
 
-	return user, []ValidationMsg{}, nil
+	return &user, []ValidationMsg{}, nil
 }
 
 // ValidateUser validates user models
@@ -62,4 +77,10 @@ func ValidateUser(id, email, password string) (e []ValidationMsg) {
 	}
 
 	return e
+}
+
+// GetUser retrives a user by email
+func GetUser(id, email string) (*User, error) {
+	user := User{ID: id, Email: email}
+	return &user, DB.First(&user).Error
 }

@@ -10,7 +10,7 @@ import (
 type User struct {
 	ID       string `sql:"not null;unique" json:"id"`
 	Email    string `sql:"not null;unique" json:"email"`
-	Password string `sql:"not null" json:"password"`
+	Password string `sql:"not null" json:"-"`
 }
 
 // CheckPass checks if the password matches the users hash.

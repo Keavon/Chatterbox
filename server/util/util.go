@@ -9,6 +9,11 @@ import (
 	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
 )
 
+// ErrorRes is a general json error response.
+type ErrorRes struct {
+	Errors []string `json:"errors"`
+}
+
 // ReadBody reads a request body and handles errors.
 func ReadBody(b io.Reader, w http.ResponseWriter) (string, error) {
 	body, err := ioutil.ReadAll(b)
@@ -31,9 +36,8 @@ func ParseJSON(b io.Reader, w http.ResponseWriter, m interface{}) error {
 	}
 
 	if err = json.Unmarshal([]byte(body), m); err != nil {
-		logger.Error.Print(err)
-		w.WriteHeader(400)
-		w.Write([]byte(`{"errors": ["invalid json"]}`))
+		logger.Debug.Print(err)
+		JSONResponse(w, ErrorRes{Errors: []string{"invalid json"}}, 400)
 		return err
 	}
 

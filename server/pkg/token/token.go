@@ -25,23 +25,20 @@ func (t Token) New(id string, exp time.Time) (string, error) {
 }
 
 // Valid checks if a token is valid
-func (t Token) Valid(token string) (bool, string) {
-	parsedToken, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
+func (t Token) Valid(rawToken string) (bool, string) {
+	parsedToken, err := jwt.Parse(rawToken, func(token *jwt.Token) (interface{}, error) {
 		// Don't forget to validate the alg is what you expect:
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return token, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		}
 
-		if err := token.Method.Verify(t.Secret, token.Signature, token.Raw); err != nil {
-			return token, err
-		}
-
-		return token, nil
+		return []byte(t.Secret), nil
 	})
 
 	if err == nil && parsedToken.Valid {
 		return true, parsedToken.Claims["sub"].(string)
 	}
 
+	fmt.Println(err)
 	return false, ""
 }

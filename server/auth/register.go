@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/chatterbox-irc/chatterbox/server/models"
-	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
 	"github.com/chatterbox-irc/chatterbox/server/util"
 )
 
@@ -15,12 +14,10 @@ type registerReq struct {
 
 func register(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	logger.Debug.Printf("%s %s\n", r.Method, r.URL.Path)
 
 	req := registerReq{}
 
 	if err := util.ParseJSON(r.Body, w, &req); err != nil {
-		// ParseJSON handles error reponse
 		return
 	}
 

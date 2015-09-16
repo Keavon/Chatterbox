@@ -29,13 +29,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(msg) > 0 {
-		msgJSON, err := models.ValidationToJSON(msg)
-		if err != nil {
-			w.WriteHeader(500)
-			return
-		}
-		w.WriteHeader(400)
-		w.Write(msgJSON)
+		util.JSONResponse(w, models.ValidationToJSON(msg), 400)
 	}
 
 	w.WriteHeader(201)

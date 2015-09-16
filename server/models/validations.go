@@ -1,11 +1,6 @@
 package models
 
-import (
-	"encoding/json"
-	"regexp"
-
-	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
-)
+import "regexp"
 
 // ValidationMsg is a the message format of validations.
 type ValidationMsg struct {
@@ -40,17 +35,8 @@ func notNil(field, contents string) []ValidationMsg {
 }
 
 // ValidationToJSON converts a ValidationMsg array to a json error message.
-func ValidationToJSON(msgs []ValidationMsg) ([]byte, error) {
-	errMsg := map[string]interface{}{
+func ValidationToJSON(msgs []ValidationMsg) interface{} {
+	return map[string]interface{}{
 		"error": msgs,
 	}
-
-	out, err := json.Marshal(errMsg)
-
-	if err != nil {
-		logger.Error.Print(err)
-		return nil, err
-	}
-
-	return out, nil
 }

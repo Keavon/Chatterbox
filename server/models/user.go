@@ -28,6 +28,53 @@ func (u User) CheckPass(password string) bool {
 	return false
 }
 
+// Update updates an existing user.
+func (u *User) Update(email, password string) ([]ValidationMsg, error) {
+	updated := false
+
+	if password != "" {
+		ePass, err := bcryptPass(password)
+
+		if err != nil {
+			return []ValidationMsg{}, err
+		}
+
+		updated = true
+		u.Password = ePass
+	}
+
+	if email != "" {
+		e := checkEmail(email)
+
+		if len(e) > 0 {
+			return e, nil
+		}
+
+		updated = true
+		u.Email = email
+	}
+
+	if updated {
+		if err := DB.Save(u).Error; err != nil {
+			return []ValidationMsg{}, err
+		}
+	}
+
+	return []ValidationMsg{}, nil
+}
+
+func bcryptPass(password string) (string, error) {
+	// Use bcrypt to hash password. Using cost 10 (reccomended by library).
+	ePass, err := bcrypt.GenerateFromPassword([]byte(password), 10)
+
+	if err != nil {
+		logger.Error.Print(err)
+		return "", err
+	}
+
+	return string(ePass), nil
+}
+
 // NewUser creates a new user object if it is valid.
 func NewUser(email, password string) (*User, []ValidationMsg, error) {
 	id, err := generateUUID()
@@ -42,15 +89,13 @@ func NewUser(email, password string) (*User, []ValidationMsg, error) {
 		return &User{}, msg, nil
 	}
 
-	// Use bcrypt to hash password. Using cost 10 (reccomended by library).
-	ePass, err := bcrypt.GenerateFromPassword([]byte(password), 10)
+	ePass, err := bcryptPass(password)
 
 	if err != nil {
-		logger.Error.Print(err)
 		return &User{}, []ValidationMsg{}, err
 	}
 
-	user := User{ID: id, Email: email, Password: string(ePass)}
+	user := User{ID: id, Email: email, Password: ePass}
 
 	if err = DB.Create(&user).Error; err != nil {
 		logger.Error.Print(err)
@@ -66,17 +111,22 @@ func ValidateUser(id, email, password string) (e []ValidationMsg) {
 	e = append(e, notNil("email", email)...)
 	e = append(e, notNil("password", password)...)
 
-	e = append(e, isEmail("email", email)...)
+	e = append(e, checkEmail(email)...)
 
 	if !DB.Where(&User{ID: id}).First(&User{}).RecordNotFound() {
 		e = append(e, ValidationMsg{Field: "id", Msg: uniqueMsg})
 	}
 
+	return e
+}
+
+func checkEmail(email string) (e []ValidationMsg) {
+	e = append(e, isEmail("email", email)...)
+
 	if !DB.Where(&User{Email: email}).First(&User{}).RecordNotFound() {
 		e = append(e, ValidationMsg{Field: "email", Msg: uniqueMsg})
 	}
-
-	return e
+	return
 }
 
 // GetUser retrives a user by email

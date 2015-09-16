@@ -39,6 +39,5 @@ func (t Token) Valid(rawToken string) (bool, string) {
 		return true, parsedToken.Claims["sub"].(string)
 	}
 
-	fmt.Println(err)
 	return false, ""
 }

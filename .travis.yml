@@ -6,7 +6,7 @@ services:
 matrix:
   include:
     - install: true # We don't want the default go get
-    - script: script/ci-test-unit
+      script: script/ci-test-unit
 
 notifications:
   irc: "chat.freenode.net#chatterbox-irc"

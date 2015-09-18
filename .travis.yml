@@ -5,9 +5,15 @@ services:
 
 matrix:
   include:
+    - install: true # We don't want the default go get
     - script: script/ci-test-unit
 
 notifications:
   irc: "chat.freenode.net#chatterbox-irc"
   use_notice: true
   skip_join: true
+  on_success: never
+  on_failure: always
+  template:
+    - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+    - "Build details : %{build_url}"

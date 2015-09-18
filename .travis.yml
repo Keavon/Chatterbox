@@ -6,6 +6,7 @@ services:
 matrix:
   include:
     - install: true # We don't want the default go get
+      go_import_path: github.com/chatterbox-irc/chatterbox
       script: script/ci-test-unit
 
 notifications:

@@ -1,0 +1,13 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+matrix:
+  include:
+    - script: script/ci-test-unit
+
+notifications:
+  irc: "chat.freenode.net#chatterbox-irc"
+  use_notice: true
+  skip_join: true

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd server
+make deps
+make test

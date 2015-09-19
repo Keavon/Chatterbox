@@ -123,6 +123,10 @@ func ValidateUser(id, email, password string) (e []ValidationMsg) {
 func checkEmail(email string) (e []ValidationMsg) {
 	e = append(e, isEmail("email", email)...)
 
+	if len(e) > 0 {
+		return
+	}
+
 	if !DB.Where(&User{Email: email}).First(&User{}).RecordNotFound() {
 		e = append(e, ValidationMsg{Field: "email", Msg: uniqueMsg})
 	}

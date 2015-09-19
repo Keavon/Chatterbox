@@ -8,7 +8,7 @@ import (
 	"github.com/chatterbox-irc/chatterbox/server/util"
 )
 
-var invalidToken = util.ErrorRes{Errors: []string{"invalid token"}}
+var invalidToken = util.ErrorRes{Errors: []util.ErrorMsg{util.ErrorMsg{Msg: "invalid token"}}}
 
 // UserReq is a request by an authenticated user.
 type UserReq func(http.ResponseWriter, *http.Request, *models.User)

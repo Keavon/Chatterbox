@@ -37,6 +37,6 @@ func notNil(field, contents string) []ValidationMsg {
 // ValidationToJSON converts a ValidationMsg array to a json error message.
 func ValidationToJSON(msgs []ValidationMsg) interface{} {
 	return map[string]interface{}{
-		"error": msgs,
+		"errors": msgs,
 	}
 }

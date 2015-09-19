@@ -11,7 +11,12 @@ import (
 
 // ErrorRes is a general json error response.
 type ErrorRes struct {
-	Errors []string `json:"errors"`
+	Errors []ErrorMsg `json:"errors"`
+}
+
+// ErrorMsg is a general error msg.
+type ErrorMsg struct {
+	Msg string `json:"msg"`
 }
 
 // ReadBody reads a request body and handles errors.
@@ -37,7 +42,7 @@ func ParseJSON(b io.Reader, w http.ResponseWriter, m interface{}) error {
 
 	if err = json.Unmarshal([]byte(body), m); err != nil {
 		logger.Debug.Print(err)
-		JSONResponse(w, ErrorRes{Errors: []string{"invalid json"}}, 400)
+		JSONResponse(w, ErrorRes{Errors: []ErrorMsg{ErrorMsg{Msg: "invalid json"}}}, 400)
 		return err
 	}
 

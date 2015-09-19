@@ -19,3 +19,5 @@ import:
     ref: 25735e3c9d624c377f7b49fa76b3c1a60f2646b9
   - package: github.com/dgrijalva/jwt-go
     ref: v2.3.0
+  - package: github.com/mattn/go-sqlite3
+    ref: v1.1.0

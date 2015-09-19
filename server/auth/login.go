@@ -18,7 +18,7 @@ type loginRes struct {
 	Token string `json:"token"`
 }
 
-var incorectUsernameOrPassword = util.ErrorRes{Errors: []string{"invalid email or password"}}
+var incorectEmailOrPassword = util.ErrorRes{Errors: []util.ErrorMsg{util.ErrorMsg{Msg: "incorrect email or password"}}}
 
 func login(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
@@ -34,13 +34,13 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		logger.Debug.Println("User not found")
-		util.JSONResponse(w, invalidToken, 401)
+		util.JSONResponse(w, incorectEmailOrPassword, 401)
 		return
 	}
 
 	if !user.CheckPass(req.Password) {
 		logger.Debug.Println("Incorrect Password")
-		util.JSONResponse(w, invalidToken, 401)
+		util.JSONResponse(w, incorectEmailOrPassword, 401)
 		return
 	}
 

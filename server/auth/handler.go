@@ -6,6 +6,7 @@ import (
 	"github.com/chatterbox-irc/chatterbox/server/models"
 	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
 	"github.com/chatterbox-irc/chatterbox/server/util"
+	"github.com/jinzhu/gorm"
 )
 
 var invalidToken = util.ErrorRes{Errors: []util.ErrorMsg{util.ErrorMsg{Msg: "invalid token"}}}
@@ -25,7 +26,10 @@ func CheckAuth(fn UserReq) http.HandlerFunc {
 
 		usr, err := models.GetUser(usrID, "")
 
-		if err != nil {
+		if err == gorm.RecordNotFound {
+			util.JSONResponse(w, invalidToken, 401)
+			return
+		} else if err != nil {
 			logger.Error.Print(err)
 			w.WriteHeader(500)
 			return

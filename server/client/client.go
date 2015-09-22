@@ -73,8 +73,6 @@ func (c Client) Request(method string, path string, body []byte) ([]byte, int, e
 
 		switch res.StatusCode {
 		case 401:
-			err = ErrUnauthorized
-		case 400:
 			reqErrs := ErrorRes{}
 
 			if err = json.Unmarshal(body, &reqErrs); err == nil {
@@ -83,6 +81,21 @@ func (c Client) Request(method string, path string, body []byte) ([]byte, int, e
 					case "incorrect email or password":
 						err = ErrIncorrectEmailOrPassword
 						break
+					}
+				}
+
+				// If error didn't match, it's a validation error
+				if err == nil {
+					err = ErrUnauthorized
+				}
+			}
+
+		case 400:
+			reqErrs := ErrorRes{}
+
+			if err = json.Unmarshal(body, &reqErrs); err == nil {
+				for _, reqErr := range reqErrs.Errors {
+					switch reqErr.Msg {
 					case "invalid json":
 						err = ErrInvalidJSON
 						break

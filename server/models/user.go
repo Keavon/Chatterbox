@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
+	"github.com/jinzhu/gorm"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -135,6 +136,13 @@ func checkEmail(email string) (e []ValidationMsg) {
 
 // GetUser retrives a user by email
 func GetUser(id, email string) (*User, error) {
-	user := User{ID: id, Email: email}
-	return &user, DB.First(&user).Error
+	user := User{}
+
+	if id != "" {
+		return &user, DB.Where("id = ?", id).First(&user).Error
+	} else if email != "" {
+		return &user, DB.Where("email = ?", email).First(&user).Error
+	}
+
+	return &User{}, gorm.RecordNotFound
 }

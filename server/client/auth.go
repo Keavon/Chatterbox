@@ -1,9 +1,6 @@
 package client
 
-import (
-	"encoding/json"
-	"fmt"
-)
+import "encoding/json"
 
 // User is the definition of the user object
 type User struct {
@@ -27,8 +24,6 @@ func (c Client) Register(email, password string) ([]ErrorMsg, error) {
 	}
 
 	body, _, err := c.Request("POST", "/auth", req)
-
-	fmt.Println(string(body))
 
 	if err != ErrValidation {
 		return []ErrorMsg{}, err
@@ -75,7 +70,7 @@ func (c Client) Whoami() (*User, error) {
 	body, _, err := c.Request("GET", "/auth/user", []byte{})
 
 	if err != nil {
-		return &User{}, nil
+		return &User{}, err
 	}
 
 	res := User{}

@@ -2,9 +2,9 @@ package mock
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math/rand"
+	"os"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -19,6 +19,8 @@ import (
 func NewMockDB() error {
 	var err error
 	db, err := gorm.Open("sqlite3", fmt.Sprintf("/tmp/test-%s-%s.db", time.Now().String(), string(rand.Int())))
+	db.SetLogger(log.New(os.Stdout, "", 0))
+	db.LogMode(true)
 
 	models.DB = db
 	models.Migrate()
@@ -28,9 +30,5 @@ func NewMockDB() error {
 
 // NewMockLogger creates a new mock logger
 func NewMockLogger() {
-	format := log.Ldate | log.Ltime | log.Lshortfile
-	logger.Debug = log.New(ioutil.Discard, "", format)
-	logger.Info = log.New(ioutil.Discard, "", format)
-	logger.Warn = log.New(ioutil.Discard, "", format)
-	logger.Error = log.New(ioutil.Discard, "", format)
+	logger.New(logger.Mconsole, logger.Ldebug)
 }

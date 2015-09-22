@@ -1,0 +1,3 @@
+cb.events = function() {
+	
+}();

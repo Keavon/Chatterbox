@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"time"
 
@@ -31,4 +32,26 @@ func NewMockDB() error {
 // NewMockLogger creates a new mock logger
 func NewMockLogger() {
 	logger.New(logger.Mconsole, logger.Ldebug)
+}
+
+// ResponseWriter is a mock http.ResponseWriter
+type ResponseWriter struct {
+	Status int
+	Output string
+}
+
+// Header mocks http.Header
+func (m ResponseWriter) Header() http.Header {
+	return make(http.Header)
+}
+
+// Write mocks http.ResponseWriter.Write
+func (m *ResponseWriter) Write(b []byte) (int, error) {
+	m.Output = string(b)
+	return m.Status, nil
+}
+
+// WriteHeader mocks http.ResponseWriter.WriteHEader
+func (m *ResponseWriter) WriteHeader(s int) {
+	m.Status = s
 }

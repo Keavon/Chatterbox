@@ -8,7 +8,6 @@ import (
 )
 
 func getUser(w http.ResponseWriter, r *http.Request, u *models.User) {
-	w.WriteHeader(200)
 	util.JSONResponse(w, u, 200)
 }
 

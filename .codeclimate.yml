@@ -9,6 +9,6 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "**.js"
-  - "**.go"
-  - "**.css"
+    - "**.js"
+    - "**.go"
+    - "**.css"

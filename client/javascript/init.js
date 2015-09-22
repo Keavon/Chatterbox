@@ -1,4 +1,5 @@
 cb.init = function() {
+	"use strict";
 	var run = function() {
 		// Add click listener to tab buttons
 		document.querySelector(".tabs").addEventListener("click", cb.tabs.tabClickEvents);

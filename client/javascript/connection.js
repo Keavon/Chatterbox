@@ -1,4 +1,5 @@
 cb.connection = function() {
+"use strict";
 	var networks = [
 		{
 			name: "freenode",

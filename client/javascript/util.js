@@ -1,4 +1,5 @@
 cb.util = function() {
+	"use strict";
 	// Returns the index of an element amongst its siblings in its parent
 	var indexInParent = function(node) {
 		var children = node.parentNode.childNodes;

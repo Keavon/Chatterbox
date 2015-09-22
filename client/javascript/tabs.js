@@ -1,4 +1,5 @@
 cb.tabs = function() {
+	"use strict";
 	// Stores information relating to tabs
 	var tabs = {
 		list: [],

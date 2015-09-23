@@ -45,7 +45,7 @@ func (u *User) Update(email, password string) ([]ValidationMsg, error) {
 	}
 
 	if email != "" {
-		e := checkEmail(email)
+		e := checkEmail(email, u.ID)
 
 		if len(e) > 0 {
 			return e, nil
@@ -112,7 +112,7 @@ func ValidateUser(id, email, password string) (e []ValidationMsg) {
 	e = append(e, notNil("email", email)...)
 	e = append(e, notNil("password", password)...)
 
-	e = append(e, checkEmail(email)...)
+	e = append(e, checkEmail(email, "")...)
 
 	if !DB.Where(&User{ID: id}).First(&User{}).RecordNotFound() {
 		e = append(e, ValidationMsg{Field: "id", Msg: uniqueMsg})
@@ -121,14 +121,16 @@ func ValidateUser(id, email, password string) (e []ValidationMsg) {
 	return e
 }
 
-func checkEmail(email string) (e []ValidationMsg) {
+func checkEmail(email string, id string) (e []ValidationMsg) {
 	e = append(e, isEmail("email", email)...)
 
 	if len(e) > 0 {
 		return
 	}
 
-	if !DB.Where(&User{Email: email}).First(&User{}).RecordNotFound() {
+	user := User{}
+
+	if !DB.Where(&User{Email: email}).First(&user).RecordNotFound() && user.ID != id {
 		e = append(e, ValidationMsg{Field: "email", Msg: uniqueMsg})
 	}
 	return

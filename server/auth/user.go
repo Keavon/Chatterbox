@@ -29,6 +29,7 @@ func updateUser(w http.ResponseWriter, r *http.Request, u *models.User) {
 
 	if len(msg) > 0 {
 		util.JSONResponse(w, models.ValidationToJSON(msg), 400)
+		return
 	}
 
 	util.JSONResponse(w, u, 200)

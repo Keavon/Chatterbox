@@ -1,11 +1,14 @@
 package client
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 // User is the definition of the user object
 type User struct {
 	ID       string `json:"id,omitempty"`
-	Email    string `json:"email"`
+	Email    string `json:"email,omitempty"`
 	Password string `json:"password,omitempty"`
 }
 
@@ -91,9 +94,12 @@ func (c *Client) UpdateUser(user *User) (*User, error) {
 		return &User{}, err
 	}
 
+	fmt.Println("-------> ", string(req))
+
 	body, _, err := c.Request("POST", "/auth/user", req)
 
 	if err != nil {
+		fmt.Println(">>>>>>>>>> Err: ", err.Error())
 		return &User{}, err
 	}
 

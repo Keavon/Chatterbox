@@ -181,6 +181,7 @@
 	height: auto;
 	list-style-type: none;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .user-list li {

@@ -1,2 +1,4 @@
 server/vendor
 server/cbx
+ircc/vendor
+ircc/cli/ircc

@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/chatterbox-irc/chatterbox/pkg/validate"
 	"github.com/chatterbox-irc/chatterbox/server/pkg/logger"
 	"github.com/jinzhu/gorm"
 
@@ -30,14 +31,14 @@ func (u User) CheckPass(password string) bool {
 }
 
 // Update updates an existing user.
-func (u *User) Update(email, password string) ([]ValidationMsg, error) {
+func (u *User) Update(email, password string) ([]validate.ValidationMsg, error) {
 	updated := false
 
 	if password != "" {
 		ePass, err := bcryptPass(password)
 
 		if err != nil {
-			return []ValidationMsg{}, err
+			return []validate.ValidationMsg{}, err
 		}
 
 		updated = true
@@ -57,11 +58,11 @@ func (u *User) Update(email, password string) ([]ValidationMsg, error) {
 
 	if updated {
 		if err := DB.Save(u).Error; err != nil {
-			return []ValidationMsg{}, err
+			return []validate.ValidationMsg{}, err
 		}
 	}
 
-	return []ValidationMsg{}, nil
+	return []validate.ValidationMsg{}, nil
 }
 
 func bcryptPass(password string) (string, error) {
@@ -77,11 +78,11 @@ func bcryptPass(password string) (string, error) {
 }
 
 // NewUser creates a new user object if it is valid.
-func NewUser(email, password string) (*User, []ValidationMsg, error) {
+func NewUser(email, password string) (*User, []validate.ValidationMsg, error) {
 	id, err := generateUUID()
 	if err != nil {
 		logger.Error.Print(err)
-		return &User{}, []ValidationMsg{}, err
+		return &User{}, []validate.ValidationMsg{}, err
 	}
 
 	msg := ValidateUser(id, email, password)
@@ -93,36 +94,36 @@ func NewUser(email, password string) (*User, []ValidationMsg, error) {
 	ePass, err := bcryptPass(password)
 
 	if err != nil {
-		return &User{}, []ValidationMsg{}, err
+		return &User{}, []validate.ValidationMsg{}, err
 	}
 
 	user := User{ID: id, Email: email, Password: ePass}
 
 	if err = DB.Create(&user).Error; err != nil {
 		logger.Error.Print(err)
-		return &User{}, []ValidationMsg{}, err
+		return &User{}, []validate.ValidationMsg{}, err
 	}
 
-	return &user, []ValidationMsg{}, nil
+	return &user, []validate.ValidationMsg{}, nil
 }
 
 // ValidateUser validates user models
-func ValidateUser(id, email, password string) (e []ValidationMsg) {
-	e = append(e, notNil("id", id)...)
-	e = append(e, notNil("email", email)...)
-	e = append(e, notNil("password", password)...)
+func ValidateUser(id, email, password string) (e []validate.ValidationMsg) {
+	e = append(e, validate.NotNil("id", id)...)
+	e = append(e, validate.NotNil("email", email)...)
+	e = append(e, validate.NotNil("password", password)...)
 
 	e = append(e, checkEmail(email, "")...)
 
 	if !DB.Where(&User{ID: id}).First(&User{}).RecordNotFound() {
-		e = append(e, ValidationMsg{Field: "id", Msg: uniqueMsg})
+		e = append(e, validate.ValidationMsg{Field: "id", Msg: validate.UniqueMsg})
 	}
 
 	return e
 }
 
-func checkEmail(email string, id string) (e []ValidationMsg) {
-	e = append(e, isEmail("email", email)...)
+func checkEmail(email string, id string) (e []validate.ValidationMsg) {
+	e = append(e, validate.IsEmail("email", email)...)
 
 	if len(e) > 0 {
 		return
@@ -131,7 +132,7 @@ func checkEmail(email string, id string) (e []ValidationMsg) {
 	user := User{}
 
 	if !DB.Where(&User{Email: email}).First(&user).RecordNotFound() && user.ID != id {
-		e = append(e, ValidationMsg{Field: "email", Msg: uniqueMsg})
+		e = append(e, validate.ValidationMsg{Field: "email", Msg: validate.UniqueMsg})
 	}
 	return
 }

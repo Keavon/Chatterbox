@@ -1,0 +1,5 @@
+package: github.com/chatterbox-irc/chatterbot/ircc
+
+import:
+  - package: github.com/thoj/go-ircevent
+    ref: 988aaaacd937fc2748708c2a3b8ea5869be4d3a0

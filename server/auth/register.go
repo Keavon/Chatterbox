@@ -3,6 +3,7 @@ package auth
 import (
 	"net/http"
 
+	"github.com/chatterbox-irc/chatterbox/pkg/validate"
 	"github.com/chatterbox-irc/chatterbox/server/models"
 	"github.com/chatterbox-irc/chatterbox/server/util"
 )
@@ -29,7 +30,7 @@ func register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(msg) > 0 {
-		util.JSONResponse(w, models.ValidationToJSON(msg), 400)
+		util.JSONResponse(w, validate.ValidationMsgsToJSON(msg), 400)
 		return
 	}
 

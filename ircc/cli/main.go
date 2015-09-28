@@ -45,8 +45,6 @@ func connect(w io.Writer, r io.Reader) {
 		os.Exit(2)
 	}
 
-	fmt.Fprintln(w, events.Connected(*server))
-
 	for {
 		var input string
 

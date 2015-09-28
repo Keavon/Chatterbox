@@ -30,6 +30,8 @@ func Parse(ircc *irc.IRC, w io.Writer, input string) int {
 		return exit(ircc, w)
 	case "join":
 		return join(ircc, w, input)
+	case "part":
+		return part(ircc, w, input)
 	default:
 		fmt.Fprint(w, events.JSONError(fmt.Sprintf("unknown type %s", cmd["type"].(string))))
 		return -1 // Not a critical error.
@@ -58,5 +60,25 @@ func join(ircc *irc.IRC, w io.Writer, input string) int {
 	}
 
 	ircc.Join(cmd.Channel, cmd.Password)
+	return -1
+}
+
+func part(ircc *irc.IRC, w io.Writer, input string) int {
+	cmd := events.Part{}
+
+	if err := json.Unmarshal([]byte(input), &cmd); err != nil {
+		fmt.Fprint(w, events.JSONError(err.Error()))
+		return -1 // Not a critical error.
+	}
+
+	e := []validate.ValidationMsg{}
+	e = append(e, validate.NotNil("channel", cmd.Channel)...)
+
+	if len(e) > 0 {
+		fmt.Fprint(w, events.ValidationError("part", e))
+		return -1 // Not a critical error.
+	}
+
+	ircc.Part(cmd.Channel)
 	return -1
 }

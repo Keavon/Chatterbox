@@ -1,16 +1,12 @@
 package events
 
-import (
-	"encoding/json"
-	"fmt"
-)
+import "encoding/json"
 
 // Connected returns a connection event
 func Connected(server string) string {
 	event, err := json.Marshal(StatusMsgEvent{Type: "connection",
 		Status: "ok",
-		Msg: fmt.Sprintf("connected to %s",
-			server),
+		Msg:    server,
 	})
 
 	if err != nil {

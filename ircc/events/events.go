@@ -28,3 +28,9 @@ type Join struct {
 	Channel  string `json:"channel"`
 	Password string `json:"password"`
 }
+
+// Part is a event for leaving a channel.
+type Part struct {
+	Type    string `json:"type"`
+	Channel string `json:"channel"`
+}

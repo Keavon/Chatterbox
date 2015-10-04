@@ -24,12 +24,12 @@ cb.tabs = function() {
 		var channel = getChannelFromTabIndex(tabIndex);
 		
 		// Change channel icon, name, topic, user count, and network name and nickname
-		document.querySelector(".channel .info img").src = channel.icon;
-		document.querySelector(".channel .info .title h1").innerHTML = channel.name;
-		document.querySelector(".channel .info .title h6").innerHTML = network.name;
+		document.querySelector(".channel img").src = channel.icon;
+		document.querySelector(".channel .title h1").innerHTML = channel.name;
+		document.querySelector(".channel .title h6").innerHTML = network.name;
 		document.querySelector(".channel p").innerHTML = channel.topic;
-		document.querySelector(".channel .info .users span").innerHTML = channel.users.length;
-		document.querySelector(".input .name a").innerHTML = network.nickname;
+		document.querySelector(".messages .toolbar .users span").innerHTML = channel.users.length;
+		// document.querySelector(".input .name a").innerHTML = network.nickname;
 		
 		// Add user list to users sidebar
 		var users = "";

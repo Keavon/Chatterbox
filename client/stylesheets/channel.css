@@ -1,0 +1,54 @@
+.channel {
+	z-index: 100;
+	padding: 24px;
+	color: #333;
+	flex: 0 0 auto;
+	background-color: #fff;
+	display: flex;
+}
+
+.channel img {
+	height: 100%;
+	width: auto;
+	flex: 0 0 auto;
+	height: 50px;
+}
+
+.channel .title {
+	height: 100%;
+	flex: 0 0 auto;
+	margin: 0 15px;
+	line-height: 1;
+	display: flex;
+	flex-direction: column;
+	height: 50px;
+}
+
+.channel .title h1 {
+	margin: 0;
+	flex: 0 0 auto;
+}
+
+.channel span {
+	display: block;
+	flex: 1 1 auto;
+}
+
+.channel .title h6 {
+	flex: 0 0 auto;
+	margin: 0;
+	font-weight: normal;
+}
+.channel .topic {
+	margin: 10px 0;
+	flex: 1 1 auto;
+}
+
+.channel p {
+	margin-top: 15px;
+	margin-bottom: 0;
+}
+
+.channel p a {
+	color: inherit;
+}

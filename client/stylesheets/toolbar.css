@@ -1,0 +1,57 @@
+.toolbar {
+	flex: 0 0 auto;
+	background-color: #3f51b5;
+	display: flex;
+	font-size: 0;
+}
+
+.toolbar a {
+	width: auto;
+	height: auto;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0;
+}
+
+.toolbar a:first-child {
+	padding-left: 12px;
+}
+
+.toolbar a:last-child {
+	padding-right: 12px;
+}
+
+.toolbar a svg {
+	width: 24px;
+	height: 24px;
+	padding: 12px;
+	fill: #fff;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.toolbar a span {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 18px;
+	line-height: 1;
+	margin: 15px 0;
+	color: #fff;
+}
+
+.toolbar input {
+	font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.87);
+    width: 100%;
+    padding: 0 24px;
+    border: none;
+    outline: none;
+	background: none;
+	line-height: 1.5;
+}
+
+.toolbar input::-webkit-input-placeholder {
+	color: #fff;
+	opacity: 0.38;
+}

@@ -5,7 +5,11 @@
 	<meta charset="utf-8">
 	<title>Chatterbox</title>
 	<link href="stylesheets/header.css" rel="stylesheet">
-	<link href="stylesheets/room.css" rel="stylesheet">
+	<link href="stylesheets/channel.css" rel="stylesheet">
+	<link href="stylesheets/toolbar.css" rel="stylesheet">
+	<link href="stylesheets/messages.css" rel="stylesheet">
+	<link href="stylesheets/log.css" rel="stylesheet">
+	<link href="stylesheets/users.css" rel="stylesheet">
 	<link href="stylesheets/input.css" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,100,100italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 	<script>var cb = {};</script>
@@ -46,27 +50,44 @@
 			</a>
 		</div>
 	</div>
-	<div class="room">
-		<div class="channel">
-			<div class="info">
-				<img />
-				<div class="title">
-					<h1></h1>
-					<h6></h6>
+	<div class="channel">
+		<img class="icon" />
+		<div class="title">
+			<h1></h1>
+			<span></span>
+			<h6></h6>
+		</div>
+		<p class="topic"></p>
+	</div>
+	<div class="content">
+		<div class="messages">
+			<div class="toolbar">
+				<div class="left">
+					<a class="user" href="#">
+						<svg viewBox="0 0 24 24">
+							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+						</svg>
+					</a>
+					<a class="notifications" href="#" onclick="var element = document.querySelectorAll('.messages .toolbar .notifications svg path'); if (element[0].style.display === 'none') element[0].style.display = ''; else element[0].style.display = 'none'; if (element[1].style.display === 'none') element[1].style.display = ''; else element[1].style.display = 'none'; return false;">
+						<svg viewBox="0 0 24 24">
+							<path d="M6.58 3.58L5.15 2.15C2.76 3.97 1.18 6.8 1.03 10h2c.15-2.65 1.51-4.97 3.55-6.42zM19.97 10h2c-.15-3.2-1.73-6.03-4.13-7.85l-1.43 1.43c2.05 1.45 3.41 3.77 3.56 6.42zm-1.97.5c0-3.07-2.13-5.64-5-6.32V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5v.68c-2.87.68-5 3.25-5 6.32V16l-2 2v1h17v-1l-2-2v-5.5zM11.5 22c.14 0 .27-.01.4-.04.65-.13 1.19-.58 1.44-1.18.1-.24.16-.5.16-.78h-4c0 1.1.9 2 2 2z" />
+							<path d="M11.5 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zM18 10.5c0-3.07-2.13-5.64-5-6.32V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5v.68c-.51.12-.99.32-1.45.56L18 14.18V10.5zm-.27 8.5l2 2L21 19.73 4.27 3 3 4.27l2.92 2.92C5.34 8.16 5 9.29 5 10.5V16l-2 2v1h14.73z" style="display: none;" />
+						</svg>
+					</a>
 				</div>
-				<div class="users">
-					<a href="#" onclick="var element = document.getElementsByClassName('user-list')[0]; if (element.className === 'user-list visible') element.className = 'user-list'; else element.className = 'user-list visible';">
-						<span>350</span>
-						<svg viewBox="0 0 1000 1000">
-							<path d="M666.7,458.3c69.2,0,124.6-55.8,124.6-125s-55.4-125-124.6-125s-125,55.8-125,125S597.5,458.3,666.7,458.3z M333.3,458.3c69.2,0,124.6-55.8,124.6-125s-55.4-125-124.6-125s-125,55.8-125,125S264.2,458.3,333.3,458.3z M333.3,541.7 c-97.1,0-291.7,48.8-291.7,145.8v104.2H625V687.5C625,590.4,430.4,541.7,333.3,541.7z M666.7,541.7c-12.1,0-25.8,0.8-40.4,2.1 c48.3,35,82.1,82.1,82.1,143.8v104.2h250V687.5C958.3,590.4,763.8,541.7,666.7,541.7z" />
+				<div class="middle">
+					<input placeholder="Search messages">
+				</div>
+				<div class="right">
+					<a class="users" href="#" onclick="var element = document.getElementsByClassName('user-list')[0]; if (element.className === 'user-list visible') element.className = 'user-list'; else element.className = 'user-list visible'; return false;">
+						<span></span>
+						<svg viewBox="0 0 24 24">
+							<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
 						</svg>
 					</a>
 				</div>
 			</div>
-			<p></p>
-		</div>
-		<div class="content">
-			<div class="messages">
+			<div class="log">
 				<p class="sender me">
 					<a href="#">Mal</a><span>10:03 AM</span>
 				</p>
@@ -80,7 +101,6 @@
 				<p class="message">Yes. Yes, this is a fertile land, and we will thrive. We will rule over all this land, and we will call it... "this land."</p>
 				<p class="message">I think we should call it "your grave!"</p>
 				<p class="message">Ah, curse your sudden but inevitable betrayal!</p>
-				<p class="message"><img src="http://i.imgur.com/lUsz1QD.gif" alt="http://i.imgur.com/lUsz1QD.gif" /></p>
 				<p class="message">Har har har! Mine is an evil laugh! Now die!</p>
 				<p class="message">Oh, no, God! Oh, dear God in heaven!</p>
 				
@@ -96,16 +116,17 @@
 				</p>
 				<p class="message">Ten percent of nothin' is... let me do the math here... nothin' into nothin'... carry the nothin'...</p>
 			</div>
-			<div class="user-list visible">
-				<input placeholder="Search">
+		</div>
+		<div class="user-list">
+			<div class="toolbar">
+				<input placeholder="Search users">
+			</div>
+			<div class="users">
 				<ul></ul>
 			</div>
 		</div>
 	</div>
 	<div class="input">
-		<div class="name">
-			<a href="#"></a>
-		</div>
 		<textarea placeholder="Message" rows="1" oninput="var i = 1; do { this.setAttribute('rows', i); i++; } while (this.scrollHeight > this.clientHeight);"></textarea>
 	</div>
 </body>

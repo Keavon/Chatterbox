@@ -1,6 +1,6 @@
 Chatterbox is a next-generation IRC client coming soon to Windows, Mac, Linux, and the web in the next couple months. It's built with a modern, minimalistic, visually pleasing interface and support for richly formatted messages with embedded media and Markdown message formatting.
 
-![Screenshot of the first version of the interface](http://i.imgur.com/J5Lqzi7.png)
+![Screenshot of the first version of the interface](http://i.imgur.com/ZjpBm3w.png)
 
 It will also have a hosted version that keeps subscribers conntected at all times with an uninterrupted experience across multiple devices and the web, even when a user's computer is off.
 

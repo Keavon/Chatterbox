@@ -13,7 +13,7 @@
 }
 
 .log .sender {
-	margin-top: 10px;
+	margin-top: 24px;
 }
 
 .log .sender a {
@@ -28,11 +28,6 @@
 
 .log .sender span {
 	color: #666;
-	margin-left: 10px;
-}
-
-.log .time-elapsed {
-	font-style: italic;
-	color: #999;
-	margin: 30px 0;
+	margin-left: 12px;
+	font-size: 12px;
 }

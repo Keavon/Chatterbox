@@ -32,10 +32,11 @@
 
 .toolbar a span {
 	display: inline-block;
-	vertical-align: middle;
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 1;
-	margin: 15px 0;
+	margin: 14px 0;
+	margin-left: -4px;
+	margin-right: 12px;
 	color: #fff;
 }
 
@@ -54,4 +55,15 @@
 .toolbar input::-webkit-input-placeholder {
 	color: #fff;
 	opacity: 0.38;
+}
+
+.toolbar input::-webkit-input-placeholder::before {
+	content: "";
+	width: 24px;
+	height: 24px;
+	margin-right: 8px;
+	display: inline-block;
+	vertical-align: top;
+	background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjZmZmZmZmIj48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiLz48L3N2Zz4=');
+	background-size: cover;
 }

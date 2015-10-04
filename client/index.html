@@ -63,15 +63,14 @@
 		<div class="messages">
 			<div class="toolbar">
 				<div class="left">
-					<a class="user" href="#">
+					<a class="settings" title="Chatterbox settings" href="#">
 						<svg viewBox="0 0 24 24">
-							<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+							<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
 						</svg>
 					</a>
-					<a class="notifications" href="#" onclick="var element = document.querySelectorAll('.messages .toolbar .notifications svg path'); if (element[0].style.display === 'none') element[0].style.display = ''; else element[0].style.display = 'none'; if (element[1].style.display === 'none') element[1].style.display = ''; else element[1].style.display = 'none'; return false;">
+					<a class="network" title="Network settings" href="#">
 						<svg viewBox="0 0 24 24">
-							<path d="M6.58 3.58L5.15 2.15C2.76 3.97 1.18 6.8 1.03 10h2c.15-2.65 1.51-4.97 3.55-6.42zM19.97 10h2c-.15-3.2-1.73-6.03-4.13-7.85l-1.43 1.43c2.05 1.45 3.41 3.77 3.56 6.42zm-1.97.5c0-3.07-2.13-5.64-5-6.32V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5v.68c-2.87.68-5 3.25-5 6.32V16l-2 2v1h17v-1l-2-2v-5.5zM11.5 22c.14 0 .27-.01.4-.04.65-.13 1.19-.58 1.44-1.18.1-.24.16-.5.16-.78h-4c0 1.1.9 2 2 2z" />
-							<path d="M11.5 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zM18 10.5c0-3.07-2.13-5.64-5-6.32V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5v.68c-.51.12-.99.32-1.45.56L18 14.18V10.5zm-.27 8.5l2 2L21 19.73 4.27 3 3 4.27l2.92 2.92C5.34 8.16 5 9.29 5 10.5V16l-2 2v1h14.73z" style="display: none;" />
+							<path d="M17 16l-4-4V8.82C14.16 8.4 15 7.3 15 6c0-1.66-1.34-3-3-3S9 4.34 9 6c0 1.3.84 2.4 2 2.82V12l-4 4H3v5h5v-3.05l4-4.2 4 4.2V21h5v-5h-4z" />
 						</svg>
 					</a>
 				</div>
@@ -79,41 +78,35 @@
 					<input placeholder="Search messages">
 				</div>
 				<div class="right">
-					<a class="users" href="#" onclick="var element = document.getElementsByClassName('user-list')[0]; if (element.className === 'user-list visible') element.className = 'user-list'; else element.className = 'user-list visible'; return false;">
-						<span></span>
+					<a class="notifications" title="Notifications when your name's mentioned" href="#" onclick="var element = document.querySelectorAll('.messages .toolbar .notifications svg path'); if (element[0].style.display === 'none') element[0].style.display = ''; else element[0].style.display = 'none'; if (element[1].style.display === 'none') element[1].style.display = ''; else element[1].style.display = 'none'; return false;">
+						<svg viewBox="0 0 24 24">
+							<path d="M6.58 3.58L5.15 2.15C2.76 3.97 1.18 6.8 1.03 10h2c.15-2.65 1.51-4.97 3.55-6.42zM19.97 10h2c-.15-3.2-1.73-6.03-4.13-7.85l-1.43 1.43c2.05 1.45 3.41 3.77 3.56 6.42zm-1.97.5c0-3.07-2.13-5.64-5-6.32V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5v.68c-2.87.68-5 3.25-5 6.32V16l-2 2v1h17v-1l-2-2v-5.5zM11.5 22c.14 0 .27-.01.4-.04.65-.13 1.19-.58 1.44-1.18.1-.24.16-.5.16-.78h-4c0 1.1.9 2 2 2z" />
+							<path d="M11.5 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zM18 10.5c0-3.07-2.13-5.64-5-6.32V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5v.68c-.51.12-.99.32-1.45.56L18 14.18V10.5zm-.27 8.5l2 2L21 19.73 4.27 3 3 4.27l2.92 2.92C5.34 8.16 5 9.29 5 10.5V16l-2 2v1h14.73z" style="display: none;" />
+						</svg>
+					</a>
+					<a class="users" title="Toggle users panel" href="#" onclick="var element = document.getElementsByClassName('user-list')[0]; if (element.className === 'user-list visible') element.className = 'user-list'; else element.className = 'user-list visible'; return false;">
 						<svg viewBox="0 0 24 24">
 							<path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
 						</svg>
+						<span></span>
 					</a>
 				</div>
 			</div>
 			<div class="log">
-				<p class="sender me">
-					<a href="#">Mal</a><span>10:03 AM</span>
-				</p>
+				<p class="sender me"><a href="#">Mal</a><span>September 27 at 10:03 AM</span></p>
 				<p class="message me">We've done the impossible, and that makes us mighty.</p>
 				
-				<p class="time-elapsed">After 1 day 22 hours of inactivity...</p>
-				
-				<p class="sender">
-					<a href="#">Wash</a><span>8:45 AM – 8:47 AM</span>
-				</p>
+				<p class="sender"><a href="#">Wash</a><span>Last Tuesday at 8:45 AM – 8:47 AM</span></p>
 				<p class="message">Yes. Yes, this is a fertile land, and we will thrive. We will rule over all this land, and we will call it... "this land."</p>
 				<p class="message">I think we should call it "your grave!"</p>
 				<p class="message">Ah, curse your sudden but inevitable betrayal!</p>
 				<p class="message">Har har har! Mine is an evil laugh! Now die!</p>
 				<p class="message">Oh, no, God! Oh, dear God in heaven!</p>
 				
-				<p class="time-elapsed">After 4 days 2 hours offline...</p>
-				
-				<p class="sender me">
-					<a href="#">Mal</a><span>10:38 AM</span>
-				</p>
+				<p class="sender me"><a href="#">Mal</a><span>Yesterday at 10:38 AM</span></p>
 				<p class="message me">Jayne, your mouth is talking. You might wanna look to that.</p>
 				
-				<p class="sender">
-					<a href="#">Jayne</a><span>11:16 AM</span>
-				</p>
+				<p class="sender"><a href="#">Jayne</a><span>Today at 11:16 AM</span></p>
 				<p class="message">Ten percent of nothin' is... let me do the math here... nothin' into nothin'... carry the nothin'...</p>
 			</div>
 		</div>

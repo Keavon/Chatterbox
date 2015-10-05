@@ -10,7 +10,7 @@ func Connected(server string) string {
 	})
 
 	if err != nil {
-		return internalError(err.Error())
+		return InternalError(err.Error())
 	}
 
 	return string(event)
@@ -25,7 +25,7 @@ func WaitForConnection(time float64) string {
 	})
 
 	if err != nil {
-		return internalError(err.Error())
+		return InternalError(err.Error())
 	}
 
 	return string(event)

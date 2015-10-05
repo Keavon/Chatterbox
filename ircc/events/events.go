@@ -21,16 +21,3 @@ type StatusErrorsEvent struct {
 	Status string      `json:"status"`
 	Errors interface{} `json:"errors"`
 }
-
-// Join is a event for joining a channel.
-type Join struct {
-	Type     string `json:"type"`
-	Channel  string `json:"channel"`
-	Password string `json:"password"`
-}
-
-// Part is a event for leaving a channel.
-type Part struct {
-	Type    string `json:"type"`
-	Channel string `json:"channel"`
-}

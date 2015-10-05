@@ -23,3 +23,13 @@ func (i *IRC) OnJoin(e *ircevent.Event) {
 func (i *IRC) OnPart(e *ircevent.Event) {
 	fmt.Fprintln(i.Output, events.Parted(e.Arguments[0]))
 }
+
+// OnMsg runs on message arrival.
+func (i IRC) OnMsg(e *ircevent.Event) {
+	notice := false
+	if e.Code == "NOTICE" {
+		notice = true
+	}
+
+	fmt.Fprintln(i.Output, events.RcvedMsg(e.Nick, e.Arguments[0], e.Arguments[1], notice))
+}

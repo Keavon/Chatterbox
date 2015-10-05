@@ -32,6 +32,8 @@ func Parse(ircc *irc.IRC, w io.Writer, input string) int {
 		return join(ircc, w, input)
 	case "part":
 		return part(ircc, w, input)
+	case "msg":
+		return msg(ircc, w, input)
 	default:
 		fmt.Fprint(w, events.JSONError(fmt.Sprintf("unknown type %s", cmd["type"].(string))))
 		return -1 // Not a critical error.
@@ -80,5 +82,28 @@ func part(ircc *irc.IRC, w io.Writer, input string) int {
 	}
 
 	ircc.Part(cmd.Channel)
+	return -1
+}
+
+// TODO: Add CTCP support for newlines
+// TODO: check length of message and break message into multiple lines
+func msg(ircc *irc.IRC, w io.Writer, input string) int {
+	cmd := events.Msg{}
+
+	if err := json.Unmarshal([]byte(input), &cmd); err != nil {
+		fmt.Fprint(w, events.JSONError(err.Error()))
+		return -1 // Not a critical error.
+	}
+
+	e := []validate.ValidationMsg{}
+	e = append(e, validate.NotNil("target", cmd.Target)...)
+	e = append(e, validate.NotNil("msg", cmd.Msg)...)
+
+	if len(e) > 0 {
+		fmt.Fprint(w, events.ValidationError("join", e))
+		return -1 // Not a critical error.
+	}
+
+	ircc.Msg(cmd.Target, cmd.Msg, cmd.Notice)
 	return -1
 }

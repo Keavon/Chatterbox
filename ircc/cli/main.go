@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"io"
@@ -45,10 +46,14 @@ func connect(w io.Writer, r io.Reader) {
 		os.Exit(2)
 	}
 
-	for {
-		var input string
+	inReader := bufio.NewReader(os.Stdin)
 
-		fmt.Fscanln(r, &input)
+	for {
+		input, err := inReader.ReadString('\n')
+
+		if err != nil {
+			fmt.Fprintln(w, events.InternalError(err.Error()))
+		}
 
 		status := parser.Parse(ircc, w, input)
 

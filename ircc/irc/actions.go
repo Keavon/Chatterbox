@@ -23,3 +23,13 @@ func (i *IRC) Disconnect() {
 	// Disconnect() hangs and isn't used in tests.
 	i.Connection.Quit()
 }
+
+// Msg sends a message to a user or channel
+func (i *IRC) Msg(channel, msg string, notice bool) {
+	if notice {
+		i.Connection.Notice(channel, msg)
+		return
+	}
+
+	i.Connection.Privmsg(channel, msg)
+}

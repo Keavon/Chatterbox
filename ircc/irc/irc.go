@@ -52,6 +52,8 @@ func New(nick, user, server, serverPass string, useTLS bool, output io.Writer) (
 	con.AddCallback("001", ircc.OnConnect)
 	con.AddCallback("JOIN", ircc.OnJoin)
 	con.AddCallback("PART", ircc.OnPart)
+	con.AddCallback("PRIVMSG", ircc.OnMsg)
+	con.AddCallback("NOTICE", ircc.OnMsg)
 
 	return &ircc, nil
 }

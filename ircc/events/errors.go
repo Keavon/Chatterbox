@@ -12,7 +12,7 @@ func ConnectionError(msg string) string {
 	event, err := json.Marshal(StatusMsgEvent{Type: "connection", Status: "error", Msg: msg})
 
 	if err != nil {
-		return internalError(err.Error())
+		return InternalError(err.Error())
 	}
 
 	return string(event)
@@ -23,7 +23,7 @@ func JSONError(msg string) string {
 	event, err := json.Marshal(StatusMsgEvent{Type: "json", Status: "error", Msg: msg})
 
 	if err != nil {
-		return internalError(err.Error())
+		return InternalError(err.Error())
 	}
 
 	return string(event)
@@ -34,14 +34,14 @@ func ValidationError(msgType string, msgs []validate.ValidationMsg) string {
 	event, err := json.Marshal(StatusErrorsEvent{Type: msgType, Status: "failed", Errors: msgs})
 
 	if err != nil {
-		return internalError(err.Error())
+		return InternalError(err.Error())
 	}
 
 	return string(event)
 }
 
-// internalError is user if there is a internal error that can't be recovered,
+// InternalError is user if there is a internal error that can't be recovered,
 // so it can't throw a error.
-func internalError(msg string) string {
+func InternalError(msg string) string {
 	return fmt.Sprintf(`{"type":"error","msg":"%s"}`, msg)
 }

@@ -33,3 +33,8 @@ func (i IRC) OnMsg(e *ircevent.Event) {
 
 	fmt.Fprintln(i.Output, events.RcvedMsg(e.Nick, e.Arguments[0], e.Arguments[1], notice))
 }
+
+// OnQuit runs on quit.
+func (i IRC) OnQuit(e *ircevent.Event) {
+	fmt.Fprintln(i.Output, events.Quit(i.Server))
+}

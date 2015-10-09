@@ -36,8 +36,6 @@ func New(nick, user, server, serverPass string, useTLS bool, output io.Writer) (
 		return nil, err
 	}
 
-	go con.Loop()
-
 	ircc := IRC{
 		Nick:       nick,
 		User:       user,
@@ -54,6 +52,9 @@ func New(nick, user, server, serverPass string, useTLS bool, output io.Writer) (
 	con.AddCallback("PART", ircc.OnPart)
 	con.AddCallback("PRIVMSG", ircc.OnMsg)
 	con.AddCallback("NOTICE", ircc.OnMsg)
+	con.AddCallback("QUIT", ircc.OnQuit)
+
+	go con.Loop()
 
 	return &ircc, nil
 }
@@ -73,7 +74,6 @@ func (i *IRC) WaitForConnection(timeout time.Duration) error {
 			return err
 		}
 
-		fmt.Fprintln(i.Output, events.WaitForConnection(time.Since(start).Seconds()))
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(100 * time.Millisecond)
 	}
 }

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Run server unit tests
+make -C server deps
+make -C server test
+
+# Run ircc unit tests
+make -C ircc deps
+make -C server test

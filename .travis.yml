@@ -7,7 +7,8 @@ matrix:
   include:
     - install: true # We don't want the default go get
       go_import_path: github.com/chatterbox-irc/chatterbox
-      script: script/ci-test-unit
+      script: scripts/ci-test-unit
+      env: GO15VENDOREXPERIMENT=1
 
 notifications:
   irc: "chat.freenode.net#chatterbox-irc"
